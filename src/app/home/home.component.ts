@@ -1,13 +1,14 @@
 import { Products } from '../../types';
+import { ProductComponent } from '../components/product/product.component';
 import { ProductsService } from './../services/products.service';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [ProductComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   constructor
