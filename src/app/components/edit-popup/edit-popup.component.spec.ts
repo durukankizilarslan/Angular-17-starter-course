@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EditPopupComponent } from './edit-popup.component';
 
 describe('EditPopupComponent', () => {
@@ -10,8 +9,8 @@ describe('EditPopupComponent', () => {
     await TestBed.configureTestingModule({
       imports: [EditPopupComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(EditPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
