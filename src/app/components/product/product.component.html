@@ -1,6 +1,7 @@
 <div class="column gap-1 wrapper">
   <img [src]="product.image" alt="Product thumbnail" />
   <h2>{{ product.name }}</h2>
+
   <div class="row gap-05">
     <span class="price-label">Price:</span
     ><span class="price">{{ product.price }}</span>
@@ -12,18 +13,24 @@
     iconCancelClass="hidden"
   ></p-rating>
 
-  <button
-    type="button"
-    pButton
-    icon="pi pi-times"
-    (click)="editProduct()"
-    label="Cancel"
-  ></button>
-  <button
-    type="button"
-    pButton
-    icon="pi pi-times"
-    (click)="deleteProduct()"
-    label="Cancel"
-  ></button>
+  <div class="row gap-05">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      (click)="editProduct()"
+      label="Edit"
+    ></button>
+    <button
+      type="button"
+      class="p-button-danger"
+      pButton
+      icon="pi pi-times"
+      (click)="confirmDelete()"
+      #deleteButton
+      label="Delete"
+    ></button>
+  </div>
 </div>
+
+<p-confirmPopup></p-confirmPopup>
