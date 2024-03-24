@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Products, Product } from '../../types';
 import { ProductComponent } from '../components/product/product.component';
 import { ProductsService } from './../services/products.service';
-import { Component } from '@angular/core';
-import { PaginatorModule } from 'primeng/paginator';
+import { Component, ViewChild } from '@angular/core';
+import { Paginator, PaginatorModule } from 'primeng/paginator';
 import { EditPopupComponent } from '../components/edit-popup/edit-popup.component';
 import { ButtonModule } from 'primeng/button';
 
@@ -17,6 +17,8 @@ import { ButtonModule } from 'primeng/button';
 export class HomeComponent {
   constructor
     (private productsService: ProductsService) { }
+
+  @ViewChild("paginator") paginator: Paginator | undefined;
 
   products: Product[] = [];
   totalRecords: number = 0;
@@ -69,6 +71,10 @@ export class HomeComponent {
 
   }
 
+  resetPaginator() {
+    this.paginator?.changePage(0);
+  }
+
   fetchProducts(page: number, perPage: number) {
     this.productsService.getProducts('http://localhost:3000/clothes', { page, perPage })
       .subscribe(
@@ -88,6 +94,7 @@ export class HomeComponent {
         next: (data) => {
           console.log(data);
           this.fetchProducts(0, this.rows);
+          this.resetPaginator();
         },
         error: (error) => { console.log(error); }
       }
@@ -101,6 +108,7 @@ export class HomeComponent {
         next: (data) => {
           console.log(data);
           this.fetchProducts(0, this.rows);
+          this.resetPaginator();
         },
         error: (error) => { console.log(error); }
       }
@@ -108,11 +116,12 @@ export class HomeComponent {
   }
 
   addProduct(product: Product) {
-    this.productsService.editProduct(`http://localhost:3000/clothes/`, product).subscribe(
+    this.productsService.addProduct(`http://localhost:3000/clothes/`, product).subscribe(
       {
         next: (data) => {
           console.log(data);
           this.fetchProducts(0, this.rows);
+          this.resetPaginator();
         },
         error: (error) => { console.log(error); }
       }
