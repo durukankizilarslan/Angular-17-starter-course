@@ -6,6 +6,15 @@
 
   box-sizing: border-box;
 
+  a {
+    text-decoration: none;
+    font-weight: 300;
+    color: black;
+    &.active {
+      font-weight: 900;
+    }
+  }
+
   .logo {
     height: 100%;
     object-fit: contain;

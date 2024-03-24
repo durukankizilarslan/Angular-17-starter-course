@@ -78,3 +78,8 @@ app-root {
 .gap-2 {
   gap: 2rem;
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
